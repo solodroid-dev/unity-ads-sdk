@@ -427,7 +427,8 @@ public class InterstitialAd {
 
                                 @Override
                                 public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
-
+                                    loadInterstitialAd();
+                                    Log.d(TAG, "onUnityAdsShowComplete");
                                 }
                             };
                             UnityAds.show(activity, unityInterstitialId, new UnityAdsShowOptions(), showListener);
@@ -479,7 +480,7 @@ public class InterstitialAd {
 
                             @Override
                             public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
-
+                                loadBackupInterstitialAd();
                             }
                         };
                         UnityAds.show(activity, unityInterstitialId, new UnityAdsShowOptions(), showListener);
@@ -767,6 +768,8 @@ public class InterstitialAd {
                                 @Override
                                 public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
                                     onInterstitialAdDismissedListener.onInterstitialAdDismissed();
+                                    loadInterstitialAd(onInterstitialAdDismissedListener);
+                                    Log.d(TAG, "onUnityAdsShowComplete with listener");
                                 }
                             };
                             UnityAds.show(activity, unityInterstitialId, new UnityAdsShowOptions(), showListener);
@@ -823,6 +826,7 @@ public class InterstitialAd {
                             @Override
                             public void onUnityAdsShowComplete(String placementId, UnityAds.UnityAdsShowCompletionState state) {
                                 onInterstitialAdDismissedListener.onInterstitialAdDismissed();
+                                loadInterstitialAd(onInterstitialAdDismissedListener);
                             }
                         };
                         UnityAds.show(activity, unityInterstitialId, new UnityAdsShowOptions(), showListener);
